@@ -5,7 +5,7 @@ GJP-chrome-extension-tools
 
 ## 目前支持的功能
 > 首页
-![Alt text](/png/home.jpg)
+![Alt text](/png/home.png)
 > 生成二维码
 
 > 生成随机数
