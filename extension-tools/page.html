@@ -1,0 +1,160 @@
+
+<html>
+<head>
+<title>tools</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link rel="stylesheet" type="text/css" href="page/pure-min.css" />
+<link rel="stylesheet" type="text/css" href="page/page.css" />
+<script type="text/javascript" src="page/qrcode.js"></script>
+</head>
+<body>
+	<div class="div-wrap">
+		<div id="home" class="pure-g div-module-show">
+			<div class="pure-u-1-2 div-qrcode">
+				<div id="show_qrcode1"></div>
+				<div class="div-qrcode1-text" >当前网址二维码</div>
+			</div>
+			<div class="pure-u-1-2 div-qrcode">
+				<div id="show_qrcode2"><img class="div-qrcode2-img" src="images/author.png" width="180" height="180"/></div>
+				<div class="div-qrcode2-text">联系作者</div>
+			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_qrcode" class=" button-big green pure-button pure-u-2-3" value="生成二维码" />
+			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_random_string" class="button-big maroon pure-button pure-u-2-3" value="生成随机数" />
+			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_idcard" class="button-big orange pure-button pure-u-2-3" value="生成身份证号" />
+			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_format_json" class="button-big blue pure-button pure-u-2-3" value="格式化JSON" />
+			</div>
+		</div>
+		
+		
+		<div id="qrcode" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title green">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;">生成二维码</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_qrcode" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<form class="pure-form">
+					<input type="text" id="qrcode_url" class="pure-input-1 input-text-big" placeholder="输入URL地址即可生成二维码，复制粘贴更直接"/>
+				</form>
+			</div>
+			<div class="pure-u-1-2">
+				<div id="show_qrcode" style="margin-left: 40px; margin-top: 40px;"></div>
+			</div>
+		</div>
+		
+		
+		<div id="random_string" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title maroon">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;">生成随机数</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_random_string" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<div class="pure-u-1-1">
+					<input type="button" id="random_btn_4" class="button green pure-button pure-u-1-3" value="生成4位随机码" />
+					<input type="button" id="random_btn_8" class="button blue2 pure-button pure-u-1-3" value="生成8位随机码" />
+				</div>
+				<div class="pure-u-1-1">
+					<input type="button" id="random_btn_16" class="button orange pure-button pure-u-1-3" value="生成16位随机码" />
+					<input type="button" id="random_btn_32" class="button blue pure-button pure-u-1-3" value="生成32位随机码" />
+				</div>
+				<div class="pure-u-1-1">
+					<form class="pure-form">
+						<input type="text" id="random_val" class="pure-input-1 input-text-big" placeholder="点击生成指定个数数字的按钮生成随机码"/>
+					</form>
+				</div>
+				<script type="text/javascript" src="randomstring/randomstring.js"></script>
+			</div>	
+		</div>
+		
+		
+		<div id="idcard" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title orange">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;">生成身份证号</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_idcard" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<form name="form1" class="pure-form">
+					<input type="hidden" value="select" name="action">
+					<div class="pure-g">
+						<div class="pure-u-1-1 submit-line-small">
+							<select class="pure-u-1-1" name="p" id="p"></select>
+						</div>
+						<div class="pure-u-1-1 submit-line-small">
+							<select class="pure-u-1-2" name="c" id="c"></select><select class="pure-u-1-2" name="r" id="r"></select>
+						</div>
+						<div class="pure-u-1-1 submit-line-small">
+							<select id="y" name="SYear" class="pure-u-1-3"></select><select id="m" name="SMonth" class="pure-u-1-3"></select><select id="d" name="SDay" class="pure-u-1-3"></select>
+						</div>
+					</div>
+					<div class="pure-u-1-1 submit-line-small">
+						<select class="pure-u-1-1" name="g" id="g">
+							<option value="1">男</option>
+							<option value="2">女</option>
+						</select>
+					</div>
+					<div class="pure-u-1-1 submit-line-small">
+						<input type="text" name="n" id="n" size="3" maxlength="3" class="pure-input-1 input-text" placeholder="请输入需要生成的数量，默认为 5 个">
+					</div>
+					<div class="pure-u-1-1">
+						<input id="go" type="button" class="button blue1 pure-button pure-u-1-1" style="margin:0px;" value="生成"/>
+					</div>
+				</form>
+				<div id="rNo" class="rNo"></div>
+				<script type="text/javascript" src="idcard/idcard.js"></script>
+			</div>
+		</div>
+		
+		
+		<div id="format_json" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title blue">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;">格式化JSON</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_format_json" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<form name="form1" class="pure-form">
+					<div class="pure-u-1-1 field-line">
+						单行JSON：
+					</div>
+					<div class="pure-u-1-1" style="text-align:left; line-height:35px;">
+						<input id="txt_original_json" type="text" class="pure-u-1-1 input-text-big"/>
+					</div>
+					<div class="pure-u-1-1 field-line">
+						格式化JSON：
+					</div>
+					<div class="pure-u-1-1">
+						<textarea id="txt_format_json" rows="10" cols="52"></textarea>
+					</div>
+					<div class="pure-u-1-1 submit-line">
+						<input id="format" type="button" class="button orange pure-button pure-u-1-3" value="格式化">
+						<input id="oneline" type="button" class="button blue pure-button pure-u-1-3" value="一行化">
+					</div>
+				</form>
+				<script type="text/javascript" src="formatjson/format.js"></script>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="page/page.js"></script>
+</html>
