@@ -3,7 +3,7 @@ GJP-chrome-extension-tools
 ***
 
 
-## ¹¦ÄÜ½ØÍ¼
+## åŠŸèƒ½æˆªå›¾
 ![](/png/home.png)
 ![](/png/qrcode.png)
 ![](/png/randomstring.png)
