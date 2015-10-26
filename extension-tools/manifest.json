@@ -1,14 +1,14 @@
 {
-  "name": "tools",
-  "description": "tools description",
-  "version": "1.0",
+  "name": "GJP-chrome-extension-tools",
+  "description": "GJP-chrome-extension-tools",
+  "version": "0.1",
   "permissions": ["tabs", "contextMenus"],
   "background": {
     "scripts": ["background.js"]
   },
   "browser_action": {
 	"default_icon": "images/icon.png",
-    "default_title": "tools",
+    "default_title": "GJP-chrome-extension-tools",
     "default_popup": "page.html"
   },
   "icons": 
