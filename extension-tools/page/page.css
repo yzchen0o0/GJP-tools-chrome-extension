@@ -6,12 +6,11 @@
 .div-module-title {border-radius:6px;margin: 0.3em;margin-bottom:10px;}
 .div-module-title table {height:40px;line-height:40px;color:white;}
 .div-qrcode1-text, .div-qrcode2-text {text-align:center;}
-.div-qrcode1-text {padding-left:76px;}
-.div-qrcode2-text {padding-right:76px;}
+.div-qrcode1-text {padding-left:50px;}
 .div-qrcode {margin-bottom:20px;}
-.div-qrcode2-img {padding-right:80px;margin-bottom:6px;}
+.div-qrcode2-img {margin-bottom:6px;}
 .a-backhome {color:white;text-decoration:none;}
-.button-big {color:white;border-radius:6px;text-shadow:0 1px 1px rgba(0, 0, 0, 0.2);	height:60px;margin:0.3em;font-size:16px;}
+.button-big {color:white;border-radius:6px;text-shadow:0 1px 1px rgba(0, 0, 0, 0.2);	height:48px;margin:0.3em;font-size:16px;}
 .button{color:white;border-radius:6px;text-shadow:0 1px 1px rgba(0, 0, 0, 0.2);	margin:0.3em;font-size:14px;}
 .green {	background:rgb(28, 184, 65);}
 .maroon {background:rgb(202, 60, 60);}
@@ -19,7 +18,7 @@
 .blue {background:rgb(66, 184, 221);}
 .blue1 {background:#0078e7;}
 .blue2 {background:rgb(0, 153, 153);}
-.input-text-big {font-size:18px;height:60px;line-height:60px;}
+.input-text-big {font-size:18px;height:48px;line-height:48px;}
 .field-line{height:35px;line-height:35px;text-align:left;font-size:16px;}
 .submit-line{height:60px;line-height:60px;}
 .submit-line-small{height:50px;line-height:50px;}

@@ -2,7 +2,7 @@
  ************************ 菜单初始化 ********************
  ********************************************************/
 // 菜单模块
-var div_module_ids = ['home', 'qrcode', 'random_string', 'idcard', 'format_json'];
+var div_module_ids = ['home', 'qrcode', 'random_string', 'idcard', 'format_json', 'author', 'http_get'];
 // 从第二个下标开始，第一个是主页模块
 for(var i = 1; i < div_module_ids.length; i++) {
 	// 菜单模块点击切换内容
@@ -42,11 +42,12 @@ function doMoveClass(eleId, destClass){
     }
 }
 
+
 /********************************************************
  ************************ 生成二维码 ********************
  ********************************************************/
-var qrcodeWidth = 180;
-var qrcodeHeight = 180;
+var qrcodeWidth = 150;
+var qrcodeHeight = 150;
 
 var qrcode = new QRCode(document.getElementById('show_qrcode'),{width:qrcodeWidth,height:qrcodeHeight});
 var qrcode1 = new QRCode(document.getElementById('show_qrcode1'),{width:qrcodeWidth,height:qrcodeHeight});
@@ -64,7 +65,9 @@ document.getElementById('qrcode_url').onkeypress = function(e){
 	qrcode.makeCode(this.value);
 };
 
-
+/*
+ * chrome加载时获取网页地址
+ */
 chrome.windows.getCurrent(function(win){ 
 	chrome.tabs.getSelected(function(tab){
 		
@@ -98,3 +101,99 @@ function drawImg(img,x,y,width,height){
 	;
 	myctx.drawImage(img,x||0,y||0,width,height);
 }
+
+
+/********************************************************
+ ************************ 获取本机IP ********************
+ ********************************************************/
+getIPs(function(ip,type){
+	if('1' == type) {
+		document.getElementById('div_private_ip').innerHTML = ip;
+	} else if('2' == type) {
+		document.getElementById('div_public_ip').innerHTML = ip;
+	}
+});
+
+/*
+ * 获取本机内网、外网IP地址  type==1：内网；type==2：外网
+ * add by yzChen
+ * time: 2015-10-29 21:04:56
+ */
+function getIPs(callback){
+    var ip_dups = {};
+
+    //compatibility for firefox and chrome
+    var RTCPeerConnection = window.RTCPeerConnection
+        || window.mozRTCPeerConnection
+        || window.webkitRTCPeerConnection;
+
+    //bypass naive webrtc blocking
+    if (!RTCPeerConnection) {
+        var iframe = document.createElement('iframe');
+        //invalidate content script
+        iframe.sandbox = 'allow-same-origin';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        var win = iframe.contentWindow;
+        window.RTCPeerConnection = win.RTCPeerConnection;
+        window.mozRTCPeerConnection = win.mozRTCPeerConnection;
+        window.webkitRTCPeerConnection = win.webkitRTCPeerConnection;
+        RTCPeerConnection = window.RTCPeerConnection
+            || window.mozRTCPeerConnection
+            || window.webkitRTCPeerConnection;
+    }
+
+    //minimal requirements for data connection
+    var mediaConstraints = {
+        optional: [{RtpDataChannels: true}]
+    };
+
+    //firefox already has a default stun server in about:config
+    //    media.peerconnection.default_iceservers =
+    //    [{"url": "stun:stun.services.mozilla.com"}]
+    var servers = undefined;
+
+    //add same stun server for chrome
+    if(window.webkitRTCPeerConnection)
+        servers = {iceServers: [{urls: "stun:stun.services.mozilla.com"}]};
+
+    //construct a new RTCPeerConnection
+    var pc = new RTCPeerConnection(servers, mediaConstraints);
+
+    //listen for candidate events
+    pc.onicecandidate = function(ice){
+	
+        //skip non-candidate events
+        if(ice.candidate){
+
+            //match just the IP address
+            var ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/
+            var ip_addr = ip_regex.exec(ice.candidate.candidate)[1];
+
+            //remove duplicates
+            if(ip_dups[ip_addr] === undefined) {
+				_type = '';
+				if(ip_addr.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
+					_type = '1';
+				} else {
+					_type = '2';
+				}
+                callback(ip_addr, _type);
+			}
+
+            ip_dups[ip_addr] = true;
+        }
+    };
+
+    //create a bogus data channel
+    pc.createDataChannel("");
+
+    //create an offer sdp
+    pc.createOffer(function(result){
+
+        //trigger the stun server request
+        pc.setLocalDescription(result, function(){}, function(){});
+
+    }, function(){});
+}
+

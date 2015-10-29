@@ -1,7 +1,7 @@
 
 <html>
 <head>
-<title>tools</title>
+<title>GJP-chrome-extension-tools</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <link rel="stylesheet" type="text/css" href="page/pure-min.css" />
 <link rel="stylesheet" type="text/css" href="page/page.css" />
@@ -15,23 +15,40 @@
 				<div class="div-qrcode1-text">当前网址二维码</div>
 			</div>
 			<div class="pure-u-1-2 div-qrcode">
-				<div id="show_qrcode2"><img class="div-qrcode2-img" src="images/author.png" width="180" height="180"/></div>
-				<div class="div-qrcode2-text">联系作者</div>
+				<div class="pure-g">
+					<div class="pure-u-1-1" style="height: 25px; text-align: left;">
+						您当前网络的外网IP：
+					</div>
+					<div id="div_public_ip" class="pure-u-1-1" style="height: 60px; line-height: 60px; font-size: 24px; text-align: left;">
+						加载中...
+					</div>
+					<div class="pure-u-1-1" style="height: 25px; text-align: left;">
+						您当前网络的内网IP：
+					</div>
+					<div id="div_private_ip" class="pure-u-1-1" style="height: 60px; line-height: 60px; font-size: 24px; text-align: left;">
+						加载中...
+					</div>
+				</div>
 			</div>
 			<div class="pure-u-1-1">
 				<input type="button" id="btn_module_qrcode" class=" button-big green pure-button pure-u-2-3" value="生成二维码" />
 			</div>
 			<div class="pure-u-1-1">
-				<input type="button" id="btn_module_random_string" class="button-big maroon pure-button pure-u-2-3" value="生成随机数" />
+				<input type="button" id="btn_module_idcard" class="button-big orange pure-button pure-u-2-3" value="生成身份证号" />
 			</div>
 			<div class="pure-u-1-1">
-				<input type="button" id="btn_module_idcard" class="button-big orange pure-button pure-u-2-3" value="生成身份证号" />
+				<input type="button" id="btn_module_http_get" class="button-big blue2 pure-button pure-u-2-3" value="模拟GET请求（未完成）" />
 			</div>
 			<div class="pure-u-1-1">
 				<input type="button" id="btn_module_format_json" class="button-big blue pure-button pure-u-2-3" value="格式化JSON" />
 			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_random_string" class="button-big maroon pure-button pure-u-2-3" value="生成随机数" />
+			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_author" class="button-big blue1 pure-button pure-u-2-3" value="关于作者" />
+			</div>
 		</div>
-		
 		
 		<div id="qrcode" class="pure-g div-module-hide">
 			<div class="pure-u-2-3 div-module-title green">
@@ -152,6 +169,42 @@
 					</div>
 				</form>
 				<script type="text/javascript" src="formatjson/format.js"></script>
+			</div>
+		</div>
+		
+		
+		<div id="author" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title blue1">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;">关于作者</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_author" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<div id="show_qrcode2"><img class="div-qrcode2-img" src="images/author.png" width="390" height="390"/></div>
+			</div>
+		</div>
+		
+		
+		<div id="http_get" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title blue2">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;">模拟GET请求</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_http_get" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<form class="pure-form">
+					<input type="text" id="txt_http_get_url" class="pure-input-1 input-text-big" placeholder="请输入需要模拟GET请求的URL地址"/>
+					<input type="button" id="" class="button blue1 pure-button pure-u-1-1" style="margin-top:8px; margin-left: 0px;" value="提交"/>
+				</form>
+			</div>
+			<div class="pure-u-1-2">
+				<div id="http_get_callback" style="margin-left: 40px; margin-top: 40px;"></div>
 			</div>
 		</div>
 	</div>
