@@ -37,7 +37,7 @@
 				<input type="button" id="btn_module_idcard" class="button-big orange pure-button pure-u-2-3" value="生成身份证号" />
 			</div>
 			<div class="pure-u-1-1">
-				<input type="button" id="btn_module_http_get" class="button-big blue2 pure-button pure-u-2-3" value="模拟GET请求（未完成）" />
+				<input type="button" id="btn_module_http_request" class="button-big blue2 pure-button pure-u-2-3" value="模拟GET/POST请求" />
 			</div>
 			<div class="pure-u-1-1">
 				<input type="button" id="btn_module_format_json" class="button-big blue pure-button pure-u-2-3" value="格式化JSON" />
@@ -188,24 +188,29 @@
 		</div>
 		
 		
-		<div id="http_get" class="pure-g div-module-hide">
+		<div id="http_request" class="pure-g div-module-hide">
 			<div class="pure-u-2-3 div-module-title blue2">
 				<table width="100%">
 					<tr>
-						<td align="left" style="padding-left: 20px;">模拟GET请求</td>
-						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_http_get" href="javascript:;" class="a-backhome">返回<<<a/></td>
+						<td align="left" style="padding-left: 20px;">模拟GET/POST请求</td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_http_request" href="javascript:;" class="a-backhome">返回<<<a/></td>
 					</tr>
 				</table>
 			</div>
 			<div class="pure-u-2-3">
 				<form class="pure-form">
-					<input type="text" id="txt_http_get_url" class="pure-input-1 input-text-big" placeholder="请输入需要模拟GET请求的URL地址"/>
-					<input type="button" id="" class="button blue1 pure-button pure-u-1-1" style="margin-top:8px; margin-left: 0px;" value="提交"/>
+					<input type="text" id="txt_http_request_url" class="pure-input-1 input-text-big pure-u-1-1" placeholder="请输入需要模拟请求的URL"/>
+						<select class="pure-u-1-1" name="http_request_type" id="http_request_type" style="margin-top:8px;">
+							<option value="GET">GET</option>
+							<option value="POST">POST</option>
+						</select>
+					<input type="button" id="btn_http_request_url" class="button blue1 pure-button pure-u-1-1" style="margin-top:8px; margin-left: 0px;" value="提交"/>
+					<div class="pure-u-1-1">
+						<textarea id="http_request_callback" rows="15" cols="52"></textarea>
+					</div>
 				</form>
 			</div>
-			<div class="pure-u-1-2">
-				<div id="http_get_callback" style="margin-left: 40px; margin-top: 40px;"></div>
-			</div>
+			<script type="text/javascript" src="httprequest/httprequest.js"></script>
 		</div>
 	</div>
 </body>

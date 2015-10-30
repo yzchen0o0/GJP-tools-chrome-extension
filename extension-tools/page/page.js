@@ -2,7 +2,7 @@
  ************************ 菜单初始化 ********************
  ********************************************************/
 // 菜单模块
-var div_module_ids = ['home', 'qrcode', 'random_string', 'idcard', 'format_json', 'author', 'http_get'];
+var div_module_ids = ['home', 'qrcode', 'random_string', 'idcard', 'format_json', 'author', 'http_request'];
 // 从第二个下标开始，第一个是主页模块
 for(var i = 1; i < div_module_ids.length; i++) {
 	// 菜单模块点击切换内容

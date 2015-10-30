@@ -14,7 +14,7 @@ function genericOnClick(info, tab) {
     console.log("选中内容：" + info.selectionText);
 	// 异步发送消息到服务器
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "http://localhost:8080/jeewx/demoController.do?aorudemo", true);
+	xhr.open("POST", "http://localhost:8080", true);
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function() {
 	  if (xhr.readyState == 4) {
