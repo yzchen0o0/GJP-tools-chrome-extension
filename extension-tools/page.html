@@ -39,17 +39,8 @@
 			<div class="pure-u-1-1">
 				<input type="button" id="btn_module_http_request" class="button-big blue2 pure-button pure-u-2-3" value="模拟GET/POST请求" />
 			</div>
-			<div class="pure-u-1-1">
-				<input type="button" id="btn_module_format_json" class="button-big blue pure-button pure-u-2-3" value="格式化JSON" />
-			</div>
-			<div class="pure-u-1-1">
-				<input type="button" id="btn_module_random_string" class="button-big maroon pure-button pure-u-2-3" value="生成随机数" />
-			</div>
-			<div class="pure-u-1-1">
-				<input type="button" id="btn_module_author" class="button-big blue1 pure-button pure-u-2-3" value="关于作者" />
-			</div>
 		</div>
-		
+
 		<div id="qrcode" class="pure-g div-module-hide">
 			<div class="pure-u-2-3 div-module-title green">
 				<table width="100%">
@@ -68,36 +59,8 @@
 				<div id="show_qrcode" style="margin-left: 40px; margin-top: 40px;"></div>
 			</div>
 		</div>
-		
-		
-		<div id="random_string" class="pure-g div-module-hide">
-			<div class="pure-u-2-3 div-module-title maroon">
-				<table width="100%">
-					<tr>
-						<td align="left" style="padding-left: 20px;">生成随机数</td>
-						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_random_string" href="javascript:;" class="a-backhome">返回<<<a/></td>
-					</tr>
-				</table>
-			</div>
-			<div class="pure-u-2-3">
-				<div class="pure-u-1-1">
-					<input type="button" id="random_btn_4" class="button green pure-button pure-u-1-3" value="生成4位随机码" />
-					<input type="button" id="random_btn_8" class="button blue2 pure-button pure-u-1-3" value="生成8位随机码" />
-				</div>
-				<div class="pure-u-1-1">
-					<input type="button" id="random_btn_16" class="button orange pure-button pure-u-1-3" value="生成16位随机码" />
-					<input type="button" id="random_btn_32" class="button blue pure-button pure-u-1-3" value="生成32位随机码" />
-				</div>
-				<div class="pure-u-1-1">
-					<form class="pure-form">
-						<input type="text" id="random_val" class="pure-input-1 input-text-big" placeholder="点击生成指定个数数字的按钮生成随机码"/>
-					</form>
-				</div>
-				<script type="text/javascript" src="randomstring/randomstring.js"></script>
-			</div>	
-		</div>
-		
-		
+
+
 		<div id="idcard" class="pure-g div-module-hide">
 			<div class="pure-u-2-3 div-module-title orange">
 				<table width="100%">
@@ -138,56 +101,8 @@
 				<script type="text/javascript" src="idcard/idcard.js"></script>
 			</div>
 		</div>
-		
-		
-		<div id="format_json" class="pure-g div-module-hide">
-			<div class="pure-u-2-3 div-module-title blue">
-				<table width="100%">
-					<tr>
-						<td align="left" style="padding-left: 20px;">格式化JSON</td>
-						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_format_json" href="javascript:;" class="a-backhome">返回<<<a/></td>
-					</tr>
-				</table>
-			</div>
-			<div class="pure-u-2-3">
-				<form name="form1" class="pure-form">
-					<div class="pure-u-1-1 field-line">
-						单行JSON：
-					</div>
-					<div class="pure-u-1-1" style="text-align:left; line-height:35px;">
-						<input id="txt_original_json" type="text" class="pure-u-1-1 input-text-big"/>
-					</div>
-					<div class="pure-u-1-1 field-line">
-						格式化JSON：
-					</div>
-					<div class="pure-u-1-1">
-						<textarea id="txt_format_json" rows="10" cols="52"></textarea>
-					</div>
-					<div class="pure-u-1-1 submit-line">
-						<input id="format" type="button" class="button orange pure-button pure-u-1-3" value="格式化">
-						<input id="oneline" type="button" class="button blue pure-button pure-u-1-3" value="一行化">
-					</div>
-				</form>
-				<script type="text/javascript" src="formatjson/format.js"></script>
-			</div>
-		</div>
-		
-		
-		<div id="author" class="pure-g div-module-hide">
-			<div class="pure-u-2-3 div-module-title blue1">
-				<table width="100%">
-					<tr>
-						<td align="left" style="padding-left: 20px;">关于作者</td>
-						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_author" href="javascript:;" class="a-backhome">返回<<<a/></td>
-					</tr>
-				</table>
-			</div>
-			<div class="pure-u-2-3">
-				<div id="show_qrcode2"><img class="div-qrcode2-img" src="images/author.png" width="390" height="390"/></div>
-			</div>
-		</div>
-		
-		
+
+
 		<div id="http_request" class="pure-g div-module-hide">
 			<div class="pure-u-2-3 div-module-title blue2">
 				<table width="100%">

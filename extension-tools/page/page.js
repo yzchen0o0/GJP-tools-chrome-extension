@@ -2,7 +2,7 @@
  ************************ 菜单初始化 ********************
  ********************************************************/
 // 菜单模块
-var div_module_ids = ['home', 'qrcode', 'random_string', 'idcard', 'format_json', 'author', 'http_request'];
+var div_module_ids = ['home', 'qrcode', 'idcard', 'http_request'];
 // 从第二个下标开始，第一个是主页模块
 for(var i = 1; i < div_module_ids.length; i++) {
 	// 菜单模块点击切换内容
@@ -26,7 +26,7 @@ function changeModule(showEleId, showClassName, hideClassName) {
 		} else {
 			s.className = c.replace(showClassName, '').replace(hideClassName, '') + ' ' + hideClassName;
 		}
-	}	
+	}
 }
 
 /*
@@ -68,9 +68,9 @@ document.getElementById('qrcode_url').onkeypress = function(e){
 /*
  * chrome加载时获取网页地址
  */
-chrome.windows.getCurrent(function(win){ 
+chrome.windows.getCurrent(function(win){
 	chrome.tabs.getSelected(function(tab){
-		
+
 		qrcode1.makeCode(tab.url);
 		document.getElementById('show_qrcode1').className = 'show-qrcode1-img';
 
@@ -82,10 +82,10 @@ chrome.windows.getCurrent(function(win){
 				//var _x = img.width,_y = img.height,_w=img.width,_h=img.height;
 				// 固定favIcon大小格式
 				var _x = img.width,_y = img.height,_w=32,_h=32,width=0,height=0;
-				
+
 				width = _w == _w ? parseInt(qrcodeWidth)-_x : _w > _x ? parseInt(qrcodeWidth)-_w-_x : parseInt(qrcodeWidth)+_w-_x;
 				height = _h == _y ? parseInt(qrcodeHeight)-_y : _h > _y ? parseInt(qrcodeHeight)-_h-_y : parseInt(qrcodeHeight)+_h-_y;
-				if(_x && _y){ 
+				if(_x && _y){
 					drawImg(img,width/2,height/2,_w,_h)
 				}
 			}
@@ -94,7 +94,7 @@ chrome.windows.getCurrent(function(win){
 });
 
 //二维码图片嵌入icon图片
-function drawImg(img,x,y,width,height){ 
+function drawImg(img,x,y,width,height){
 	var myCanvas = document.getElementsByTagName('canvas')
 		,_canvas = myCanvas[0]
 		,myctx = _canvas.getContext('2d')
@@ -162,7 +162,7 @@ function getIPs(callback){
 
     //listen for candidate events
     pc.onicecandidate = function(ice){
-	
+
         //skip non-candidate events
         if(ice.candidate){
 
@@ -196,4 +196,3 @@ function getIPs(callback){
 
     }, function(){});
 }
-
