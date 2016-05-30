@@ -68,30 +68,35 @@ document.getElementById('qrcode_url').onkeypress = function(e){
 /*
  * chrome加载时获取网页地址
  */
-chrome.windows.getCurrent(function(win){
-	chrome.tabs.getSelected(function(tab){
+ if(!chrome.windows) {
+	 qrcode1.makeCode(window.location.href);
+	 document.getElementById('show_qrcode1').className = 'show-qrcode1-img';
+ } else {
+	chrome.windows.getCurrent(function(win){
+		chrome.tabs.getSelected(function(tab){
+			
+			qrcode1.makeCode(tab.url);
+			document.getElementById('show_qrcode1').className = 'show-qrcode1-img';
 
-		qrcode1.makeCode(tab.url);
-		document.getElementById('show_qrcode1').className = 'show-qrcode1-img';
+			if(tab.favIconUrl){
+				img = new Image();
+				img.src = tab.favIconUrl;
+				img.onload=function(){
+					// 按照网站的favIcon大小格式
+					//var _x = img.width,_y = img.height,_w=img.width,_h=img.height;
+					// 固定favIcon大小格式
+					var _x = img.width,_y = img.height,_w=32,_h=32,width=0,height=0;
 
-		if(tab.favIconUrl){
-			img = new Image();
-			img.src = tab.favIconUrl;
-			img.onload=function(){
-				// 按照网站的favIcon大小格式
-				//var _x = img.width,_y = img.height,_w=img.width,_h=img.height;
-				// 固定favIcon大小格式
-				var _x = img.width,_y = img.height,_w=32,_h=32,width=0,height=0;
-
-				width = _w == _w ? parseInt(qrcodeWidth)-_x : _w > _x ? parseInt(qrcodeWidth)-_w-_x : parseInt(qrcodeWidth)+_w-_x;
-				height = _h == _y ? parseInt(qrcodeHeight)-_y : _h > _y ? parseInt(qrcodeHeight)-_h-_y : parseInt(qrcodeHeight)+_h-_y;
-				if(_x && _y){
-					drawImg(img,width/2,height/2,_w,_h)
+					width = _w == _w ? parseInt(qrcodeWidth)-_x : _w > _x ? parseInt(qrcodeWidth)-_w-_x : parseInt(qrcodeWidth)+_w-_x;
+					height = _h == _y ? parseInt(qrcodeHeight)-_y : _h > _y ? parseInt(qrcodeHeight)-_h-_y : parseInt(qrcodeHeight)+_h-_y;
+					if(_x && _y){
+						drawImg(img,width/2,height/2,_w,_h)
+					}
 				}
 			}
-		}
+		});
 	});
-});
+}
 
 //二维码图片嵌入icon图片
 function drawImg(img,x,y,width,height){

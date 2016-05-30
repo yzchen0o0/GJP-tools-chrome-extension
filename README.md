@@ -6,10 +6,6 @@
 ## 功能截图
 ![](/png/home.png)
 ![](/png/qrcode.png)
-![](/png/randomstring.png)
 ![](/png/idcard.png)
-![](/png/formatjson.png)
-
-
-
-
+![](/png/httprequest.png)
+![](/png/right-menu-idcard.gif)

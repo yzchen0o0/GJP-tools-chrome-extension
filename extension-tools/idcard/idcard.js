@@ -167,7 +167,7 @@ PCAS.SetP = function(PCA) {
 };
 PCAS.SetC = function(PCA) {
     PI = PCA.SelP.selectedIndex;
-    PCA.SelC.length = 0;	
+    PCA.SelC.length = 0;
     for (i = 1; i < PCAC[PI].length; i++) {
 		PCACArr = PCAC[PI][i].split('-');
 		PCACT = PCACArr[1];
@@ -209,7 +209,7 @@ function loadY() {
 	for(var i=y; i>(y-100); i--){
 		ySelect.options.add(new Option(i,i));
 	}
-	
+
 	loadM();
 }
 function loadM() {
@@ -217,7 +217,7 @@ function loadM() {
 	for(var i=1; i<13; i++){
 		mSelect.options.add(new Option(i,i));
 	}
-	
+
 	loadD();
 }
 function loadD() {
@@ -243,7 +243,3 @@ dateLoad();
 // 添加监听事件
 ySelect.addEventListener('change',loadM,false);
 mSelect.addEventListener('change',loadD,false);
-
-
-
-
