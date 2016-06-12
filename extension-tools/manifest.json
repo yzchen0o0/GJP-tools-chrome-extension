@@ -1,7 +1,7 @@
 {
   "name": "GJP-chrome-extension-tools",
   "description": "GJP-chrome-extension-tools",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "permissions": ["tabs", "contextMenus", "<all_urls>"],
   "background": {
     "scripts": ["background.js"]

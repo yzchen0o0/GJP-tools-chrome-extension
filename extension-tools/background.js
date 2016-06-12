@@ -78,15 +78,25 @@ for (var i = 0; i < contexts.length; i++) {
 function getRandom(m,n){
 	return Math.round((Math.random()*(n-m)+m))
 }
+function padLeft(str, lenght) {
+	if (str.length >= lenght)
+		return str;
+	else
+		return padLeft("0" + str, lenght);
+}
 function strsub(str,i){
 	return str.substr(i-1,1)
 }
 
 function writeIdcard(info, tab) {
     // 北京市东城区 - 随机生日 - 随机4位数
-    _idcard = to18('110101' + '19' + getRandom(45,90) + getRandom(1,12) + getRandom(1,28) + getRandom(100,999));
+    _idcard = to18('110101' + '19' + getRandom(45,90) + padLeft(getRandom(1,12),2) + padLeft(getRandom(1,28),2) + getRandom(100,999));
     // 加入到剪贴板
     _copy(_idcard);
 }
-chrome.contextMenus.create({"title": "玛尼玛尼哄！让俺Ctrl+V就有个测试的身份证号吧！！", "contexts":["page"], "onclick": writeIdcard});
-chrome.contextMenus.create({"title": "玛尼玛尼哄！让俺Ctrl+V就有个测试的身份证号吧！！", "contexts":["editable"], "onclick": writeIdcard});
+chrome.contextMenus.create({"title": "自动生成一个符合正则表达式的身份号到粘贴板（Ctrl+V即可使用）", "contexts":["page"], "onclick": writeIdcard});
+chrome.contextMenus.create({"title": "自动生成一个符合正则表达式的身份号到粘贴板（Ctrl+V即可使用）", "contexts":["editable"], "onclick": writeIdcard});
+
+
+
+  
