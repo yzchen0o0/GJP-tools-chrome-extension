@@ -49,7 +49,7 @@ for (var i = 0; i < contexts.length; i++) {
 /**************************************************************
  ************************ 来一个身份证号 **********************
  **************************************************************/
- function to18(str17){
+ function to18(str17){ 
 	var num = 0;
 	var wei;
 	var xis;
@@ -79,10 +79,19 @@ function getRandom(m,n){
 	return Math.round((Math.random()*(n-m)+m))
 }
 function padLeft(str, lenght) {
-	if (str.length >= lenght)
+	if(str.constructor == String) {
+		if (str.length < lenght)
+			return padLeft("0" + str, lenght);
+		else
+			return str;
+	} else if(str.constructor == Number) {
+		if(str < Math.pow(10, lenght - 1)) {
+			return padLeft("0" + str, lenght);
+		}
 		return str;
-	else
-		return padLeft("0" + str, lenght);
+	} else {
+		return str;
+	}
 }
 function strsub(str,i){
 	return str.substr(i-1,1)
@@ -90,7 +99,13 @@ function strsub(str,i){
 
 function writeIdcard(info, tab) {
     // 北京市东城区 - 随机生日 - 随机4位数
-    _idcard = to18('110101' + '19' + getRandom(45,90) + padLeft(getRandom(1,12),2) + padLeft(getRandom(1,28),2) + getRandom(100,999));
+	__id17 = '110101'+'19';
+	__id17 += getRandom(45,90);
+	__id17 += padLeft(getRandom(1,12),2);
+	__id17 += padLeft(getRandom(1,28),2);
+	__id17 += getRandom(100,999);
+    _idcard = to18(__id17);
+	
     // 加入到剪贴板
     _copy(_idcard);
 }
