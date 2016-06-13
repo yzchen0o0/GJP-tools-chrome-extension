@@ -107,11 +107,17 @@ function writeIdcard(info, tab) {
     _idcard = to18(__id17);
 	
     // 加入到剪贴板
-    _copy(_idcard);
+    // _copy(_idcard);
+	
+	// 直接输出到文本框中
+	chrome.windows.getCurrent(function(win){
+		chrome.tabs.getSelected(function(tab){
+			chrome.tabs.sendRequest(tab.id, {idcard: _idcard}, function(response) {
+				//
+			});
+		});
+	});
+
 }
-chrome.contextMenus.create({"title": "自动生成一个符合正则表达式的身份号到粘贴板（Ctrl+V即可使用）", "contexts":["page"], "onclick": writeIdcard});
-chrome.contextMenus.create({"title": "自动生成一个符合正则表达式的身份号到粘贴板（Ctrl+V即可使用）", "contexts":["editable"], "onclick": writeIdcard});
-
-
-
-  
+chrome.contextMenus.create({"title": "自动生成一个符合正则表达式的身份号到此文本框", "contexts":["editable"], "onclick": writeIdcard});
+ 
