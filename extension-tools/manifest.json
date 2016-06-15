@@ -1,7 +1,7 @@
 {
   "name": "GJP-chrome-extension-tools",
   "description": "GJP-chrome-extension-tools",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "permissions": ["tabs", "contextMenus", "<all_urls>"],
   "background": {
     "scripts": ["background.js"]
@@ -18,7 +18,7 @@
     "128": "images/icon128.png"
   },
   "content_scripts":[{
-	"matches":["http://*/*"],
+	"matches":["*://*/*"],
 	"js":["content_script.js"]
   }],
   "manifest_version": 2
