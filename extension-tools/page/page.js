@@ -113,7 +113,13 @@ function drawImg(img,x,y,width,height){
  ********************************************************/
 getIPs(function(ip,type){
 	if('1' == type) {
-		document.getElementById('div_private_ip').innerHTML = ip;
+        div_private_ip = document.getElementById('div_private_ip').innerHTML;
+        if(div_private_ip) {
+            // 只添加第一个内网ip
+            if(!div_private_ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
+		        document.getElementById('div_private_ip').innerHTML = ip;
+            }
+        }
 	} else if('2' == type) {
 		document.getElementById('div_public_ip').innerHTML = ip;
 	}
