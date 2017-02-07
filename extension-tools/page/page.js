@@ -121,9 +121,26 @@ getIPs(function(ip,type){
             }
         }
 	} else if('2' == type) {
-		document.getElementById('div_public_ip').innerHTML = ip;
+		// document.getElementById('div_public_ip').innerHTML = ip;
 	}
 });
+
+getPublicIpByInternet();
+
+
+function getPublicIpByInternet() {
+    var _ipUrl = 'http://ip.cn';
+    httpRequest(function(_status, _respText, _isSucc) {
+        if(_isSucc) {
+            var _idxBegain = _respText.indexOf('您现在的 IP：');
+            var listText = _respText.substring(_idxBegain, _respText.length);
+            var _idxEnd = listText.indexOf('所在地理位置');
+            listText = listText.substring(0, _idxEnd);
+            listText = listText.replace('您现在的 IP：', '').replace('</p><p>', '').replace('</code>', '').replace('<code>', '');
+			document.getElementById('div_public_ip').innerHTML = listText;
+        }
+    }, 'GET', _ipUrl);
+}
 
 /*
  * 获取本机内网、外网IP地址  type==1：内网；type==2：外网
