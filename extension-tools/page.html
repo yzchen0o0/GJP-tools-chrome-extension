@@ -39,6 +39,9 @@
 			<div class="pure-u-1-1">
 				<input type="button" id="btn_module_http_request" class="button-big blue2 pure-button pure-u-2-3" value="模拟GET/POST请求" />
 			</div>
+			<div class="pure-u-1-1">
+				<input type="button" id="btn_module_bankcard" class="button-big blue pure-button pure-u-2-3" value="银行卡开户行查询" />
+			</div>
 		</div>
 
 		<div id="qrcode" class="pure-g div-module-hide">
@@ -127,7 +130,30 @@
 			</div>
 			<script type="text/javascript" src="httprequest/httprequest.js"></script>
 		</div>
-	</div>
+		
+		<div id="bankcard" class="pure-g div-module-hide">
+			<div class="pure-u-2-3 div-module-title blue">
+				<table width="100%">
+					<tr>
+						<td align="left" style="padding-left: 20px;"></td>
+						<td align="right" style="padding-right: 20px;"><a id="btn_module_backhome_bankcard" href="javascript:;" class="a-backhome">返回<<<a/></td>
+					</tr>
+				</table>
+			</div>
+			<div class="pure-u-2-3">
+				<form class="pure-form">
+					<input type="text" id="txt_bank_card" class="pure-input-1 input-text-big pure-u-1-1" placeholder="请输入需要查询的银行卡号"/>
+					<input type="button" id="btn_bank_card" class="button blue1 pure-button pure-u-1-1" style="margin-top:8px; margin-left: 0px;" value="提交"/>
+					<div class="pure-u-1-1" style="text-align: left; width:76%">
+						<p id="p_bank_card_no">银行卡号：</p>
+						<p id="p_bank_card_name">银行名称：</p>
+						<p id="p_bank_card_type">银行卡种：</p>
+						<p id="p_bank_card_logo">银行图标：</p>
+					</div>
+				</form>
+			</div>
+			<script type="text/javascript" src="bankcard/bankcard.js"></script>
+		</div>
 </body>
 <script type="text/javascript" src="page/page.js"></script>
 </html>
