@@ -114,10 +114,27 @@ function drawImg(img,x,y,width,height){
 getIPs(function(ip,type){
 	if('1' == type) {
 		document.getElementById('div_private_ip').innerHTML = ip;
-	} else if('2' == type) {
-		document.getElementById('div_public_ip').innerHTML = ip;
-	}
+    }
+    // del by yzChen  2018-2-26 09:58:24  desc：当使用路由器访问时无法查到公网ip，改用其他网站接口获取
+    //else if('2' == type) {
+	//	document.getElementById('div_public_ip').innerHTML = ip;
+	//}
 });
+
+getPublicIP(function(ip) {
+    document.getElementById('div_public_ip').innerHTML = ip;
+});
+
+function getPublicIP(callback) {
+    httpRequest(function(status, respText, isSuccess) {
+		if(isSuccess) {
+            respText = "{ip:'175.0.159.146',address:'湖南省长沙市 电信'}";
+            var respRegex = /(['"])((?!\1).)*?\1/;
+            var resp = respRegex.exec(respText);
+			callback(resp[0].replace('\'', '').replace('\'', '')); 
+		}		
+	}, 'GET', 'http://ip.chinaz.com/getip.aspx');
+}
 
 /*
  * 获取本机内网、外网IP地址  type==1：内网；type==2：外网
@@ -179,7 +196,9 @@ function getIPs(callback){
             if(ip_dups[ip_addr] === undefined) {
 				_type = '';
 				if(ip_addr.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
-					_type = '1';
+                    if(!ip_addr.match(/^(192\.168\.56\.)/)) {
+                        _type = '1';
+                    }
 				} else {
 					_type = '2';
 				}
