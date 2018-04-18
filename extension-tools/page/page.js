@@ -128,7 +128,7 @@ getPublicIP(function(ip) {
 function getPublicIP(callback) {
     httpRequest(function(status, respText, isSuccess) {
 		if(isSuccess) {
-            respText = "{ip:'175.0.159.146',address:'湖南省长沙市 电信'}";
+            //respText = "{ip:'175.0.159.146',address:'湖南省长沙市 电信'}";
             var respRegex = /(['"])((?!\1).)*?\1/;
             var resp = respRegex.exec(respText);
 			callback(resp[0].replace('\'', '').replace('\'', '')); 
