@@ -1,4 +1,4 @@
-﻿/********************************************************
+/********************************************************
  ************************ 菜单初始化 ********************
  ********************************************************/
 // 菜单模块
@@ -128,12 +128,11 @@ getPublicIP(function(ip) {
 function getPublicIP(callback) {
     httpRequest(function(status, respText, isSuccess) {
 		if(isSuccess) {
-            //respText = "{ip:'175.0.159.146',address:'湖南省长沙市 电信'}";
-            var respRegex = /(['"])((?!\1).)*?\1/;
-            var resp = respRegex.exec(respText);
-			callback(resp[0].replace('\'', '').replace('\'', '')); 
+            //respText = "document.getElementById("ip_addr").innerHTML = "xxx.xxx.xxx.xxx";document.getElementById("ip_in").value = "xxx.xxx.xxx.xxx";";
+            resp = respText.substring(respText.indexOf('= "') + 3, respText.indexOf('";'));
+			callback(resp); 
 		}		
-	}, 'GET', 'http://ip.chinaz.com/getip.aspx');
+	}, 'POST', 'https://www.ip5.me/js.php');
 }
 
 /*
