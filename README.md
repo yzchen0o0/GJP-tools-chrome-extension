@@ -11,17 +11,17 @@
 
 ## 功能截图
 ### 首页
-![](/png/home.png)
+![](https://gitee.com/cyzshenzhen/GJP-tools-chrome-extension/raw/master/png/home.png)
 ### 生成二维码
-![](/png/qrcode.png)
+![](https://gitee.com/cyzshenzhen/GJP-tools-chrome-extension/raw/master/png/qrcode.png)
 ### 生成身份证号码
-![](/png/idcard.png)
+![](https://gitee.com/cyzshenzhen/GJP-tools-chrome-extension/raw/master/png/idcard.png)
 ### 模拟http请求
-![](/png/httprequest.png)
+![](https://gitee.com/cyzshenzhen/GJP-tools-chrome-extension/raw/master/png/httprequest.png)
 ### 银行卡卡种及开户行查询
-![](/png/bankcard.png)
+![](https://gitee.com/cyzshenzhen/GJP-tools-chrome-extension/raw/master/png/bankcard.png)
 ### 右键菜单生成随机身份证号码
-![](/png/right-menu-idcard.gif)
+![](https://gitee.com/cyzshenzhen/GJP-tools-chrome-extension/raw/master/png/right-menu-idcard.gif)
 
 ## My Blog
 [blog.guijianpan.com](http://blog.guijianpan.com "倚楼听风雨")
