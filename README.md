@@ -23,3 +23,5 @@
 ### 右键菜单生成随机身份证号码
 ![](/png/right-menu-idcard.gif)
 
+## My Blog
+[blog.guijianpan.com](http://blog.guijianpan.com "倚楼听风雨")
