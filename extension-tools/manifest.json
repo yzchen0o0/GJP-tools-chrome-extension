@@ -2,7 +2,7 @@
   "name": "GJP-chrome-extension-tools",
   "update_url": "http://www.baidu.com/update.xml",
   "description": "GJP-chrome-extension-tools",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "permissions": ["tabs", "contextMenus", "<all_urls>"],
   "background": {
     "scripts": ["background.js"]

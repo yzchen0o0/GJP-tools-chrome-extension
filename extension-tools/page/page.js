@@ -111,111 +111,20 @@ function drawImg(img,x,y,width,height){
 /********************************************************
  ************************ 获取本机IP ********************
  ********************************************************/
-getIPs(function(ip,type){
-	if('1' == type) {
-		document.getElementById('div_private_ip').innerHTML = ip;
-    }
-    // del by yzChen  2018-2-26 09:58:24  desc：当使用路由器访问时无法查到公网ip，改用其他网站接口获取
-    //else if('2' == type) {
-	//	document.getElementById('div_public_ip').innerHTML = ip;
-	//}
-});
-
-getPublicIP(function(ip) {
+getIPAddr(function(ip, addr) {
     document.getElementById('div_public_ip').innerHTML = ip;
+    document.getElementById('div_public_addr').innerHTML = addr;
 });
 
-function getPublicIP(callback) {
+function getIPAddr(callback) {
     httpRequest(function(status, respText, isSuccess) {
 		if(isSuccess) {
-            //respText = "document.getElementById("ip_addr").innerHTML = "xxx.xxx.xxx.xxx";document.getElementById("ip_in").value = "xxx.xxx.xxx.xxx";";
-            resp = respText.substring(respText.indexOf('= "') + 3, respText.indexOf('";'));
-			callback(resp); 
+            _respText = respText.replace('var returnCitySN = ', '');
+            _respText = _respText.substring(0, _respText.length - 1);
+            _returnCitySN = JSON.parse(_respText);
+            _ip = _returnCitySN.cip;
+            _addr = _returnCitySN.cname;
+			callback(_ip, _addr); 
 		}		
-	}, 'POST', 'https://www.ip5.me/js.php');
-}
-
-/*
- * 获取本机内网、外网IP地址  type==1：内网；type==2：外网
- * add by yzChen
- * time: 2015-10-29 21:04:56
- */
-function getIPs(callback){
-    var ip_dups = {};
-
-    //compatibility for firefox and chrome
-    var RTCPeerConnection = window.RTCPeerConnection
-        || window.mozRTCPeerConnection
-        || window.webkitRTCPeerConnection;
-
-    //bypass naive webrtc blocking
-    if (!RTCPeerConnection) {
-        var iframe = document.createElement('iframe');
-        //invalidate content script
-        iframe.sandbox = 'allow-same-origin';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        var win = iframe.contentWindow;
-        window.RTCPeerConnection = win.RTCPeerConnection;
-        window.mozRTCPeerConnection = win.mozRTCPeerConnection;
-        window.webkitRTCPeerConnection = win.webkitRTCPeerConnection;
-        RTCPeerConnection = window.RTCPeerConnection
-            || window.mozRTCPeerConnection
-            || window.webkitRTCPeerConnection;
-    }
-
-    //minimal requirements for data connection
-    var mediaConstraints = {
-        optional: [{RtpDataChannels: true}]
-    };
-
-    //firefox already has a default stun server in about:config
-    //    media.peerconnection.default_iceservers =
-    //    [{"url": "stun:stun.services.mozilla.com"}]
-    var servers = undefined;
-
-    //add same stun server for chrome
-    if(window.webkitRTCPeerConnection)
-        servers = {iceServers: [{urls: "stun:stun.services.mozilla.com"}]};
-
-    //construct a new RTCPeerConnection
-    var pc = new RTCPeerConnection(servers, mediaConstraints);
-
-    //listen for candidate events
-    pc.onicecandidate = function(ice){
-
-        //skip non-candidate events
-        if(ice.candidate){
-
-            //match just the IP address
-            var ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/
-            var ip_addr = ip_regex.exec(ice.candidate.candidate)[1];
-
-            //remove duplicates
-            if(ip_dups[ip_addr] === undefined) {
-				_type = '';
-				if(ip_addr.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
-                    if(!ip_addr.match(/^(192\.168\.56\.)/)) {
-                        _type = '1';
-                    }
-				} else {
-					_type = '2';
-				}
-                callback(ip_addr, _type);
-			}
-
-            ip_dups[ip_addr] = true;
-        }
-    };
-
-    //create a bogus data channel
-    pc.createDataChannel("");
-
-    //create an offer sdp
-    pc.createOffer(function(result){
-
-        //trigger the stun server request
-        pc.setLocalDescription(result, function(){}, function(){});
-
-    }, function(){});
+	}, 'GET', 'http://pv.sohu.com/cityjson?ie=utf-8');
 }
